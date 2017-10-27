@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TypeRighter for 美術</title>
+<title>メタルレリーフのレポートを作成</title>
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <style>
+	body {
+		font-family: sans-serif;
+		font-weight: lighter;
+	}
 input {
 width: 90%;
 }
@@ -12,36 +16,78 @@ width: 90%;
 }
 #credit {
 position: fixed;
-display: block;
 bottom: 5px;
+display: block;
 width: 100%;
 background: #fff;
 }
+	#pas {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		background: #fff;
+		text-align: center;
+		height: 100vh;
+	}
 </style>
 </head>
 <body>
 <h1>メタルレリーフの<br>レポートを作成</h1>
-<div id="proport"><span>評価基準7-8を基準にしたレポートとなります。なお、成績の保証をしませんので、作成されたレポートをよく読み返してください。</span>
-<br><br>
-<span><strong>レポートに追加する写真や図をアップロード</strong></span><br><br>
-<span>メタルレリーフ写真 ①</span>
-<input type="file"><br>
-<span>写真の説明</span>
-<textarea placeholder="説明を入力"></textarea><br><br>
-<span>メタルレリーフ写真 ②</span>
-<input type="file"><br>
-<span>写真の説明</span>
-<textarea placeholder="説明を入力"></textarea><br><br>
-<span>メタルレリーフ ③</span>
-<input type="file"><br>
-<span>写真の説明</span>
-<textarea placeholder="説明を入力"></textarea><br><br><br>
-<button onclick="create()">作成</button><br><br></div><div id="resultport" style="display: none;" ><span><strong>完成したレポート</strong></span><br><div id="result"></div><br><br><br><br><br>
-<div id="credit">(c)2017 Tomo Yamamoto</div>
-<script>
-function create() {
-
-}
-</script>
+<div id="proport">
+	<span>評価基準7-8を基準にしたレポートとなります。なお、成績の保証をしませんので、作成されたレポートをよく読み返してください。</span>
+	<br><br>
+	<span><strong>レポートに追加する写真や図をアップロード</strong></span><br><br>
+	<span>メタルレリーフ写真 ①</span>
+	<input type="file" id="getto1"><br>
+	<span>作品の説明（そのまま使われます）</span><br>
+	<textarea placeholder="説明を入力" id="setto1" onkeyup="chk()"></textarea><br><br>
+	<span>メタルレリーフ写真 ②</span><br>
+	<input type="file" id="getto2"><br>
+	<span>作品の説明（そのまま使われます）</span><br>
+	<textarea placeholder="説明を入力" id="setto2" onkeyup="chk()"></textarea><br><br>
+	<span>メタルレリーフ ③</span><br>
+	<input type="file" id="getto3"><br>
+	<span>作品の説明（そのまま使われます）</span><br>
+	<textarea placeholder="説明を入力" id="setto3" onkeyup="chk()"></textarea><br><br><br>
+	<button id="okbtn" onclick="create()" disabled>作成</button><br><br>
+	</div>
+	<div id="resultport" style="display: none;" >
+		<span><strong>完成したレポート</strong></span><br><br>
+		<br><div id="result"></div><br><br><br>
+		<button onclick="bck()">戻る</button><br><br>
+	</div>
+	<div id="credit"><span>(c)2017 Tomo Yamamoto</span></div>
+	<script>
+		function bck() {
+			document.getElementById("proport").style.display = "block";
+			document.getElementById("resultport").style.display = "none";
+		}
+		function chk() {
+			var j1 = document.getElementById("setto1").value;
+			var j2 = document.getElementById("setto2").value;
+			var j3 = document.getElementById("setto3").value;
+			if( j1.length > 0 && j2.length > 0 && j3.length > 0 ) {
+				document.getElementById("okbtn").disabled = false;
+			} else {
+				document.getElementById("okbtn").disabled = true;
+			}
+		}
+		function create() {
+			document.getElementById("proport").style.display = "none";
+			document.getElementById("resultport").style.display = "block";
+			const read = document.getElementById("result");
+			read.innerHTML = "<strong style='font-size: 20px;'>①紹介するレリーフ作品</strong><br><strong>作品＃１</strong><br>" + document.getElementById("setto1").value + "<br><br><strong>作品＃２</strong><br>" + document.getElementById("setto2").value + "<br><br><strong>作品＃３</strong><br>" + document.getElementById("setto3").value + "<br><br><strong style='font-size: 20px;'>②レリーフ作品が与える影響</strong><br>レリーフ作品は、巻物を彫刻化したものであると思う。古代ローマの遺跡にも石の壁を削って作成されたレリーフがあり、その壁には時系列に王の活躍などが描かれている。また、古代エジプトにも有名なものに似たようなものがある。エジプトにそびえ立つ「ピラミッド」には、ヒエログリフがたくさん書かれており、それはピラミッドの奥に眠る王の活躍の「ストーリー」を時系列に描いた作品である。ヒエログリフは「絵」であると考えている人がほとんどであるが、実は奥行きがあり、「レリーフに色付けをした作品」である。（何千年間もエジプトの風によって飛ばされた砂によって削られたと思われる。）クラスで作るレリーフは、時系列に絵を作成する作品ではないが、巻物のように「ストーリー性」をもつ特徴がレリーフにはもうい一つある。それは、彫刻では不可能である「背景を描く」ことである。ストーリーや（言い換えると）メッセージには、ストーリーの中心となる「物」とストーリの場所と時間を表す「設定」があり、それらによって構成される。よって、レリーフには古代ローマや古代エジプト、または江戸時代によくみられた「絵巻物」のように時系列に書かなくても十分「メッセージやストーリー」を表すことができることが’わかる。<br>レリーフに、メッセージやストーリーを伝える力があることから、鑑賞者にメッセージを通して「影響する」ことが可能のではないかと思う。<br><br>" + "<strong style='font-size: 20px;'>③自分なりの考え</strong><br>作品は、メッセージを伝えるためにあると思う。レリーフに限らず、全ての作品には、意味が込められている。よって、これから作品を作成する時に置いて、鑑賞する人に自分が伝えたいメッセージ（残したいものに関するメッセージ）を残せるように作成していきたいと思う。";
+		}
+		function pasmit() {
+			var pas = document.getElementById("passd").value;
+			if( pas == "daquan1234") {
+				document.getElementById("pas").style.display = "none";
+			} else {
+				document.getElementById("pas").style.display = "block";
+				alert("WRONG PASSWORD");
+			}
+		}
+	</script>
+	<div id="pas"><br><br><span>ENTER PASSWORD TO CONTINUE</span><br><br><input type="password" id="passd" placeholder="ENTER PASSWORD"><br><br><button style='width: 90%; border-radius: 0px;' onclick="pasmit()">SUBMIT PASSWORD</button></div>
 </body>
 </html>
